@@ -1,16 +1,36 @@
 <%- include('../partials/navbar') %>
 
-<div class="landing-hero">
-    <h1>Where Developers <br> <span style="background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Connect & Build</span></h1>
-    <p>The premium social platform for modern developers. Share your thoughts, showcase your projects, and grow with the community.</p>
+<div class="hero-section reveal">
+    <div class="hero-badge">Next Generation Developer Social</div>
+    <h1 class="hero-title">Build the Future <br> of Engineering.</h1>
+    <p style="max-width: 650px; margin: 0 auto 3rem auto; color: var(--text-secondary); font-size: 1.15rem; line-height: 1.8;">
+        The most sophisticated workspace for modern developers to connect, share, and grow. Experience the new standard in developer community.
+    </p>
     
-    <div class="landing-buttons">
+    <div style="display: flex; gap: 1rem; justify-content: center;">
         <% if (locals.user) { %>
-            <a href="/dashboard" class="btn-action">Go to Dashboard</a>
+            <a href="/dashboard" class="btn-premium">Explore Feed</a>
         <% } else { %>
-            <a href="/auth/register" class="btn-action">Get Started</a>
-            <a href="/auth/login" class="btn-action" style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);">Login</a>
+            <a href="/auth/register" class="btn-premium">Create Account</a>
+            <a href="/auth/login" class="btn-premium btn-secondary">Sign In</a>
         <% } %>
+    </div>
+</div>
+
+<div class="container reveal" style="padding-bottom: 10rem; animation-delay: 0.2s;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <div class="aurora-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Real-time Sync</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Experience lightning-fast updates across the entire ecosystem.</p>
+        </div>
+        <div class="aurora-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Secure by Design</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Your data is protected with industry-leading security protocols.</p>
+        </div>
+        <div class="aurora-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Global Network</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Connect with top engineers from around the globe instantly.</p>
+        </div>
     </div>
 </div>
 
