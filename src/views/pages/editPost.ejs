@@ -1,0 +1,26 @@
+<%- include('../partials/navbar') %>
+
+<div class="form-wrapper">
+    <form action="/posts/<%= post._id %>/edit" method="POST" class="glass-panel" style="max-width: 600px;">
+        <h1>Edit Your Post</h1>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Refine your thoughts</p>
+        
+        <div class="form-group">
+            <label>Post Title</label>
+            <input type="text" name="title" placeholder="Title" value="<%= post.title %>" required />
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" placeholder="Write your post..." required rows="10"><%= post.content %></textarea>
+        </div>
+        
+        <button type="submit" class="btn-action" style="width: 100%; margin-top: 1rem;">Update & Save</button>
+        
+        <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+            <a href="/posts/<%= post._id %>" style="color: var(--text-muted);">Discard changes</a>
+        </p>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

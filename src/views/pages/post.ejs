@@ -1,0 +1,74 @@
+<%- include('../partials/navbar') %>
+
+<div style="max-width: 800px; margin: 4rem auto;">
+    <% if (typeof post !== 'undefined' && post) { %>
+        <article class="glass-panel" style="padding: 3rem; margin-bottom: 3rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.1;"><%= post.title %></h1>
+            
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; color: var(--text-muted); font-size: 0.95rem;">
+                <span style="color: var(--primary); font-weight: 700;">@<%= post.author && post.author.name ? post.author.name : 'Anonymous' %></span>
+                <span>•</span>
+                <span><%= new Date(post.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></span>
+            </div>
+            
+            <div style="font-size: 1.2rem; line-height: 1.8; color: #e2e8f0; white-space: pre-wrap; margin-bottom: 4rem;">
+                <%= post.content %>
+            </div>
+            
+            <% if (locals.user && post.author && (locals.user.userId === post.author.id || locals.user.userId === post.author._id.toString())) { %>
+                <div style="display: flex; gap: 1rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                    <a href="/posts/<%= post._id %>/edit" class="btn-action" style="background: var(--glass-highlight);">Edit Post</a>
+                    <form action="/posts/<%= post._id %>/delete" method="POST" style="margin: 0; padding: 0; background: none; box-shadow: none; width: auto; border:none;">
+                        <button type="submit" class="btn-action" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444;" onclick="return confirm('Are you sure?')">Delete Post</button>
+                    </form>
+                </div>
+            <% } %>
+        </article>
+
+        <!-- Comments Section -->
+        <section style="margin-top: 6rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem;">Discussion (<%= comments ? comments.length : 0 %>)</h2>
+            
+            <% if (comments && comments.length > 0) { %>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;">
+                    <% comments.forEach(comment => { %>
+                        <div class="glass-panel" style="padding: 1.5rem; border-left: 4px solid var(--primary);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                <strong style="color: var(--primary);">@<%= comment.author ? comment.author.name : 'Unknown' %></strong> 
+                                <span style="color: var(--text-muted);"><%= new Date(comment.createdAt).toLocaleDateString() %></span>
+                            </div>
+                            <div style="color: #cbd5e1; line-height: 1.6;"><%= comment.text %></div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="glass-panel" style="padding: 3rem; text-align: center; margin-bottom: 3rem;">
+                    <p style="color: var(--text-muted); font-style: italic;">No comments yet. Share your thoughts below!</p>
+                </div>
+            <% } %>
+
+            <% if (locals.user) { %>
+                <form action="/comments" method="POST" class="glass-panel" style="padding: 2.5rem; max-width: 100%;">
+                    <input type="hidden" name="postId" value="<%= post._id %>" />
+                    <h3 style="margin-bottom: 1.5rem;">Leave a Comment</h3>
+                    <div class="form-group">
+                        <textarea name="text" placeholder="What are your thoughts?" required rows="4" style="background: rgba(0,0,0,0.2);"></textarea>
+                    </div>
+                    <button type="submit" class="btn-action">Post Comment</button>
+                </form>
+            <% } else { %>
+                <div class="glass-panel" style="text-align: center; padding: 3rem;">
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You must be logged in to participate in the discussion.</p>
+                    <a href="/auth/login" class="btn-action">Sign In to Comment</a>
+                </div>
+            <% } %>
+        </section>
+    <% } else { %>
+        <div class="glass-panel" style="text-align: center; padding: 6rem;">
+            <h1 style="color: var(--text-muted); margin-bottom: 2rem;">Post Not Found</h1>
+            <a href="/dashboard" class="btn-action">Back to Feed</a>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include('../partials/navbar') %>
+
+<div class="landing-hero">
+    <h1>Where Developers <br> <span style="background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Connect & Build</span></h1>
+    <p>The premium social platform for modern developers. Share your thoughts, showcase your projects, and grow with the community.</p>
+    
+    <div class="landing-buttons">
+        <% if (locals.user) { %>
+            <a href="/dashboard" class="btn-action">Go to Dashboard</a>
+        <% } else { %>
+            <a href="/auth/register" class="btn-action">Get Started</a>
+            <a href="/auth/login" class="btn-action" style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);">Login</a>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
