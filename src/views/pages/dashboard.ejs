@@ -1,45 +1,43 @@
 <%- include('../partials/navbar') %>
 
-<div style="padding: 6rem 0;" class="reveal">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
-        <div>
-            <h1 style="font-size: 3rem; margin-bottom: 0.5rem; text-align: left;">Global Feed</h1>
-            <p style="color: var(--text-secondary);">Latest updates from the developer community</p>
-        </div>
-        <a href="/posts/create" class="btn-premium">Create New Post</a>
-    </div>
-
-    <div class="feed-grid">
-    <% if (posts && posts.length > 0) { %>
-        <% posts.forEach(post => { %>
-            <div class="aurora-card post-aurora">
-                <h3 class="post-title"><%= post.title %></h3>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
-                    <%= post.content.substring(0, 120) %><%= post.content.length > 120 ? '...' : '' %>
-                </p>
-                
-                <div class="post-meta">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>by <strong style="color: #fff;">@<%= post.author ? post.author.name : 'Unknown' %></strong></span>
-                        <a href="/posts/<%= post._id %>" style="color: #3a7bd5; text-decoration: none; font-weight: 600;">View Full Post</a>
-                    </div>
-                </div>
-
-                <% if (locals.user && post.author && post.author._id.toString() === locals.user.userId) { %>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
-                        <a href="/posts/<%= post._id %>/edit" class="btn-premium btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Edit</a>
-                        <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline; padding:0; background:transparent; border:none; box-shadow:none; width:auto;">
-                            <button type="submit" class="btn-premium" style="padding: 0.4rem 1rem; font-size: 0.8rem; background: rgba(239, 68, 68, 0.1); color: #ef4444;" onclick="return confirm('Delete this post?')">Delete</button>
-                        </form>
-                    </div>
-                <% } %>
+<div style="padding: 6rem 0;">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;">
+            <div>
+                <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem; text-align: left;">Community Feed</h1>
+                <p style="color: var(--text-gray); font-size: 1.1rem;">Explore the latest stories from top engineers.</p>
             </div>
-        <% }) %>
-    <% } else { %>
-        <div class="aurora-card" style="grid-column: 1 / -1; text-align: center; padding: 6rem;">
-            <p style="color: var(--text-secondary); font-size: 1.1rem;">The feed is empty. Start the conversation!</p>
+            <a href="/posts/create" class="btn-elite btn-blue">New Post</a>
         </div>
-    <% } %>
+
+        <div class="elite-grid">
+        <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <div class="elite-card post-elite">
+                    <h3><%= post.title %></h3>
+                    <p><%= post.content.substring(0, 100) %><%= post.content.length > 100 ? '...' : '' %></p>
+                    
+                    <div class="post-footer">
+                        <span>by <strong style="color: var(--text-black);">@<%= post.author ? post.author.name : 'Unknown' %></strong></span>
+                        <a href="/posts/<%= post._id %>" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">Read</a>
+                    </div>
+
+                    <% if (locals.user && post.author && post.author._id.toString() === locals.user.userId) { %>
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <a href="/posts/<%= post._id %>/edit" style="color: var(--text-gray); text-decoration: none; font-size: 0.85rem;">Edit</a>
+                            <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline; padding:0; background:transparent; border:none; box-shadow:none; width:auto;">
+                                <button type="submit" style="color: #ff3b30; background: none; border: none; cursor: pointer; font-size: 0.85rem;" onclick="return confirm('Delete this post?')">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="elite-card" style="grid-column: 1 / -1; text-align: center; padding: 8rem;">
+                <p style="color: var(--text-gray); font-size: 1.2rem;">The community is quiet. Be the first to post!</p>
+            </div>
+        <% } %>
+        </div>
     </div>
 </div>
 

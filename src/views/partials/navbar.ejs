@@ -9,16 +9,16 @@
 <body>
     <nav>
         <div class="container">
-            <a href="/" style="text-decoration: none;"><h2 class="brand-name">DevConnect</h2></a>
+            <a href="/" style="text-decoration: none;"><h2 class="brand-elite">DevConnect</h2></a>
             <div class="nav-links">
                 <a href="/">Home</a>
                 <% if (locals.user) { %>
-                    <a href="/dashboard">Dashboard</a>
-                    <a href="/posts/create">New Post</a>
-                    <a href="/auth/logout" class="btn-premium" style="padding: 0.5rem 1.2rem; margin-left: 1.5rem;">Logout</a>
+                    <a href="/dashboard">Feed</a>
+                    <a href="/posts/create">Post</a>
+                    <a href="/auth/logout" class="btn-elite" style="padding: 0.5rem 1.2rem; margin-left: 1.5rem;">Sign Out</a>
                 <% } else { %>
-                    <a href="/auth/login">Login</a>
-                    <a href="/auth/register" class="btn-premium" style="padding: 0.5rem 1.2rem; margin-left: 1.5rem;">Join Now</a>
+                    <a href="/auth/login">Sign In</a>
+                    <a href="/auth/register" class="btn-elite btn-blue" style="padding: 0.5rem 1.2rem; margin-left: 1.5rem;">Join the Community</a>
                 <% } %>
             </div>
         </div>

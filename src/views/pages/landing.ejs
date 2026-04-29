@@ -1,35 +1,34 @@
 <%- include('../partials/navbar') %>
 
-<div class="hero-section reveal">
-    <div class="hero-badge">Next Generation Developer Social</div>
-    <h1 class="hero-title">Build the Future <br> of Engineering.</h1>
-    <p style="max-width: 650px; margin: 0 auto 3rem auto; color: var(--text-secondary); font-size: 1.15rem; line-height: 1.8;">
-        The most sophisticated workspace for modern developers to connect, share, and grow. Experience the new standard in developer community.
-    </p>
-    
-    <div style="display: flex; gap: 1rem; justify-content: center;">
-        <% if (locals.user) { %>
-            <a href="/dashboard" class="btn-premium">Explore Feed</a>
-        <% } else { %>
-            <a href="/auth/register" class="btn-premium">Create Account</a>
-            <a href="/auth/login" class="btn-premium btn-secondary">Sign In</a>
-        <% } %>
+<div class="hero-elite">
+    <div class="container">
+        <h1>Connect. Create. <br> Grow together.</h1>
+        <p>The premier platform for software engineers to share insights and build the future of the web.</p>
+        
+        <div style="display: flex; gap: 1.5rem; justify-content: center;">
+            <% if (locals.user) { %>
+                <a href="/dashboard" class="btn-elite btn-blue">Go to Dashboard</a>
+            <% } else { %>
+                <a href="/auth/register" class="btn-elite btn-blue">Start Your Journey</a>
+                <a href="/auth/login" class="btn-elite" style="background: transparent; color: var(--text-black); border: 1px solid var(--border-light);">Sign In</a>
+            <% } %>
+        </div>
     </div>
 </div>
 
-<div class="container reveal" style="padding-bottom: 10rem; animation-delay: 0.2s;">
+<div class="container" style="padding-bottom: 10rem;">
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
-        <div class="aurora-card">
-            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Real-time Sync</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">Experience lightning-fast updates across the entire ecosystem.</p>
+        <div class="elite-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Minimalist</h3>
+            <p style="color: var(--text-gray); font-size: 1rem;">Clean interface designed for maximum focus and productivity.</p>
         </div>
-        <div class="aurora-card">
-            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Secure by Design</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">Your data is protected with industry-leading security protocols.</p>
+        <div class="elite-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Scalable</h3>
+            <p style="color: var(--text-gray); font-size: 1rem;">Built on modern foundations to handle the next generation of devs.</p>
         </div>
-        <div class="aurora-card">
-            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Global Network</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">Connect with top engineers from around the globe instantly.</p>
+        <div class="elite-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Collaborative</h3>
+            <p style="color: var(--text-gray); font-size: 1rem;">Seamless discussion threads and knowledge sharing tools.</p>
         </div>
     </div>
 </div>
